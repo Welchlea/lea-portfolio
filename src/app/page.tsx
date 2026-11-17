@@ -2,6 +2,12 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import {
+  AtomicModelDiagram,
+  TaxonomyTreeDiagram,
+  CopydeckDiagram,
+  LocalePipelineDiagram,
+} from "./diagrams";
 
 /* ─── Theme toggle ─── */
 function ThemeToggle() {
@@ -137,9 +143,7 @@ export default function Home() {
           <PlaceholderContent title="Conversational AI" />
         )}
         {activeTab === "content-strategy" && <ContentStrategyContent />}
-        {activeTab === "e-commerce" && (
-          <PlaceholderContent title="E-commerce" />
-        )}
+        {activeTab === "e-commerce" && <EcommerceContent />}
       </main>
 
       {/* Footer */}
@@ -494,8 +498,7 @@ function ContentStrategyContent() {
         </h2>
         <p className="text-muted text-lg max-w-xl leading-relaxed">
           Designing reusable content structures, hierarchical taxonomies and
-          localisation workflows across 26+ locales at Sage, and product
-          taxonomy for Shopify&apos;s B2B wholesale marketplace Handshake.
+          localisation workflows across 26+ locales at Sage.
         </p>
       </div>
 
@@ -527,6 +530,7 @@ function ContentStrategyContent() {
             </ul>
           </Card>
         </div>
+        <AtomicModelDiagram />
       </Section>
 
       {/* Sage Blog Taxonomy */}
@@ -542,29 +546,7 @@ function ContentStrategyContent() {
           <StatCard value="76" label="unique categories" />
           <StatCard value="6" label="language variants" />
         </div>
-        <Card>
-          <CardLabel>Three-branch hierarchy</CardLabel>
-          <div className="space-y-0">
-            <div className="flex items-start gap-4 py-4 border-b border-border">
-              <span className="font-mono text-accent font-semibold text-sm min-w-[100px]">Category</span>
-              <span className="text-muted text-sm">
-                Topic-based labels: Cloud, GDPR, Ambition, Business Intelligence, Making Tax Digital
-              </span>
-            </div>
-            <div className="flex items-start gap-4 py-4 border-b border-border">
-              <span className="font-mono text-accent font-semibold text-sm min-w-[100px]">Business Area</span>
-              <span className="text-muted text-sm">
-                Functional groupings: HR and Payroll, Accounting, CRM, ERP, Legal, Partners
-              </span>
-            </div>
-            <div className="flex items-start gap-4 py-4">
-              <span className="font-mono text-accent font-semibold text-sm min-w-[100px]">Industry</span>
-              <span className="text-muted text-sm">
-                Sector labels localised per market (e.g. &ldquo;Financial services&rdquo; in EN-GB became &ldquo;Servicios financieros&rdquo; in ES-ES)
-              </span>
-            </div>
-          </div>
-        </Card>
+        <TaxonomyTreeDiagram />
         <p className="text-lg leading-relaxed mt-8 max-w-xl">
           This separation meant any blog post could be classified by what it was
           about, which part of the business it served and which industry it
@@ -605,6 +587,7 @@ function ContentStrategyContent() {
             </div>
           </div>
         </Card>
+        <CopydeckDiagram />
         <div className="grid sm:grid-cols-2 gap-8 items-start">
           <div>
             <p className="text-lg leading-relaxed mb-6">
@@ -636,23 +619,7 @@ function ContentStrategyContent() {
           Sage&apos;s global website served content in more than 26 locales,
           organised into six regional groups for workflow management.
         </p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-10">
-          {[
-            { group: "A", locales: "fr-CA, en-CA, en-US" },
-            { group: "B", locales: "en-AU, id-ID, th-TH, zh-CN, en-HK, en-SG, en-MY" },
-            { group: "C", locales: "es-ES, pt-PT" },
-            { group: "D", locales: "fr-FR, fr-MA, fr-BE, nl-BE" },
-            { group: "E", locales: "de-DE, de-AT, pl-PL, de-CH, fr-CH, it-CH" },
-            { group: "F", locales: "en-ZA, en-KE, en-NG, en-TV, en-ZW, en-AE" },
-          ].map((g) => (
-            <div key={g.group} className="card p-5">
-              <span className="font-mono text-accent font-semibold">
-                Group {g.group}
-              </span>
-              <p className="text-muted text-sm mt-2 leading-relaxed">{g.locales}</p>
-            </div>
-          ))}
-        </div>
+        <LocalePipelineDiagram />
         <div className="grid sm:grid-cols-2 gap-8 items-start">
           <div>
             <p className="text-lg leading-relaxed mb-6">
@@ -678,8 +645,54 @@ function ContentStrategyContent() {
         </div>
       </Section>
 
+      {/* What This Demonstrates */}
+      <Section number="05" title="What this work demonstrates">
+        <div className="grid sm:grid-cols-2 gap-4">
+          {[
+            {
+              title: "Knowledge management",
+              desc: "Taxonomies and controlled vocabularies that define how an organisation classifies, finds and governs its content across markets and languages.",
+            },
+            {
+              title: "Reusable content structures",
+              desc: "Atomised copydecks that serve translation, governance and multi-channel publishing from a single source of truth.",
+            },
+            {
+              title: "Content operations at scale",
+              desc: "Regional grouping models, BAU trackers and review workflows that turn 26+ independent locale pipelines into six coordinated ones.",
+            },
+          ].map((item) => (
+            <Card key={item.title}>
+              <CardLabel>{item.title}</CardLabel>
+              <p className="leading-relaxed text-muted text-sm">{item.desc}</p>
+            </Card>
+          ))}
+        </div>
+      </Section>
+    </article>
+  );
+}
+
+/* ─── E-commerce Case Study ─── */
+function EcommerceContent() {
+  return (
+    <article>
+      {/* Case Study Header */}
+      <div className="mb-14 sm:mb-20">
+        <span className="badge mb-6">Case Study</span>
+        <h2 className="text-3xl sm:text-[2.75rem] font-semibold mb-5 leading-tight tracking-tight">
+          Handshake at Shopify,
+          <br />
+          <span className="gradient-text">a B2B wholesale marketplace</span>
+        </h2>
+        <p className="text-muted text-lg max-w-xl leading-relaxed">
+          Product taxonomy and brand content architecture for Shopify&apos;s
+          B2B wholesale marketplace Handshake.
+        </p>
+      </div>
+
       {/* Handshake */}
-      <Section number="05" title="Handshake at Shopify: taxonomy and brand architecture">
+      <Section number="01" title="Taxonomy and brand architecture">
         <div className="grid sm:grid-cols-2 gap-8 items-start">
           <div>
             <p className="text-lg leading-relaxed mb-6">
@@ -720,31 +733,15 @@ function ContentStrategyContent() {
       </Section>
 
       {/* What This Demonstrates */}
-      <Section number="06" title="What this work demonstrates">
+      <Section number="02" title="What this work demonstrates">
         <div className="grid sm:grid-cols-2 gap-4">
-          {[
-            {
-              title: "Knowledge management",
-              desc: "Taxonomies and controlled vocabularies that define how an organisation classifies, finds and governs its content across markets and languages.",
-            },
-            {
-              title: "Reusable content structures",
-              desc: "Atomised copydecks that serve translation, governance and multi-channel publishing from a single source of truth.",
-            },
-            {
-              title: "Content operations at scale",
-              desc: "Regional grouping models, BAU trackers and review workflows that turn 26+ independent locale pipelines into six coordinated ones.",
-            },
-            {
-              title: "Brand as a content system",
-              desc: "Brand identity treated as reusable content components: guidelines, templates and rules rather than a one-off design project.",
-            },
-          ].map((item) => (
-            <Card key={item.title}>
-              <CardLabel>{item.title}</CardLabel>
-              <p className="leading-relaxed text-muted text-sm">{item.desc}</p>
-            </Card>
-          ))}
+          <Card>
+            <CardLabel>Brand as a content system</CardLabel>
+            <p className="leading-relaxed text-muted text-sm">
+              Brand identity treated as reusable content components: guidelines,
+              templates and rules rather than a one-off design project.
+            </p>
+          </Card>
         </div>
       </Section>
     </article>
