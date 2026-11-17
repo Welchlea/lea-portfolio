@@ -1152,28 +1152,13 @@ tone: [neutral, calm, plain_english, no_urgency]`}</code></pre>
           general information, and turns the boundary into a clear next step
           instead of a dead end.
         </p>
-        <div className="grid sm:grid-cols-3 gap-4">
-          <ChatScreen
-            step="1. Start"
-            note="Limits shown before the user types."
-            messages={[{ from: "system", text: "I can't see your account. Don't share personal details like your National Insurance number." }]}
-            chips={["Do I need to tell them about side income?", "When is the deadline?"]}
-          />
-          <ChatScreen
-            step="2. Clarify and explain"
-            note="Empathy first, then the general rule, with a label."
-            messages={[
-              { from: "label", text: "General information" },
-              { from: "system", text: "Generally, if your income stays under £1,000 in a tax year, you usually don't need to register." },
-            ]}
-          />
-          <ChatScreen
-            step="3. Boundary and handoff"
-            note="When certainty needs personal data, it stops and offers real routes."
-            messages={[
-              { from: "label", text: "Your next steps" },
-              { from: "system", text: "Sign in to your account · Check if you need to register · Contact the tax service" },
-            ]}
+        <div className="card overflow-hidden">
+          <Image
+            src="/images/conversational/chat-screens.png"
+            alt="Three chat screens: the start screen shows limits before the user types, the second labels general information, and the third turns the boundary into clear next steps"
+            width={2400}
+            height={948}
+            className="w-full h-auto"
           />
         </div>
       </Section>
@@ -1331,34 +1316,6 @@ function SpineTag({ label, value, high = false }: { label: string; value: string
       <span className="text-muted">{label}:</span>
       <span style={high ? { color: "var(--accent)", fontWeight: 500 } : undefined} className={high ? "" : "text-muted"}>{value}</span>
     </span>
-  );
-}
-
-type ChatMsg = { from: "system" | "label"; text: string };
-function ChatScreen({ step, note, messages, chips = [] }: { step: string; note: string; messages: ChatMsg[]; chips?: string[] }) {
-  return (
-    <div className="card overflow-hidden flex flex-col">
-      <div className="px-4 py-3 border-b border-border">
-        <p className="text-sm font-medium">Tax assistant</p>
-        <p className="text-xs text-muted font-mono">General guidance only</p>
-      </div>
-      <div className="p-4 flex-1 space-y-3">
-        {messages.map((m, i) =>
-          m.from === "label" ? (
-            <span key={i} className="inline-block text-[10px] font-mono uppercase tracking-widest text-accent border border-border rounded px-2 py-0.5">{m.text}</span>
-          ) : (
-            <p key={i} className="text-sm leading-relaxed rounded-lg p-3" style={{ background: "var(--accent-alpha)" }}>{m.text}</p>
-          )
-        )}
-        {chips.map((c) => (
-          <p key={c} className="text-xs text-muted border border-border rounded-full px-3 py-1.5 inline-block mr-1">{c}</p>
-        ))}
-      </div>
-      <div className="px-4 py-3 border-t border-border">
-        <p className="text-sm font-medium mb-1">{step}</p>
-        <p className="text-xs text-muted leading-relaxed">{note}</p>
-      </div>
-    </div>
   );
 }
 
