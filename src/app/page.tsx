@@ -138,7 +138,7 @@ export default function Home() {
       {/* Content */}
       <main className="max-w-3xl mx-auto w-full px-4 sm:px-6 py-14 sm:py-20 flex-1">
         {activeTab === "process" && <ProcessContent />}
-        {activeTab === "ux-writing" && <PlaceholderContent title="UX Writing" />}
+        {activeTab === "ux-writing" && <UXWritingContent />}
         {activeTab === "conversational-ai" && <ConversationalAIContent />}
         {activeTab === "content-strategy" && <ContentStrategyContent />}
         {activeTab === "e-commerce" && <EcommerceContent />}
@@ -1329,6 +1329,159 @@ function SpineTag({ label, value, high = false }: { label: string; value: string
       <span className="text-muted">{label}:</span>
       <span style={high ? { color: "var(--accent)", fontWeight: 500 } : undefined} className={high ? "" : "text-muted"}>{value}</span>
     </span>
+  );
+}
+
+/* ─── UX Writing Case Study (Barclays payments app) ─── */
+function UXWritingContent() {
+  return (
+    <article>
+      {/* Case Study Header */}
+      <div className="mb-14 sm:mb-20">
+        <span className="badge mb-6">Case Study</span>
+        <h2 className="text-3xl sm:text-[2.75rem] font-semibold mb-5 leading-tight tracking-tight">
+          Making a payments app
+          <br />
+          <span className="gradient-text">easy to understand</span>
+        </h2>
+        <p className="text-muted text-lg max-w-xl leading-relaxed">
+          Barclays launched a contactless payments app to over 11 million
+          customers. I was brought on to shape the proposition and onboarding
+          content: writing, testing and refining the copy with UX, product and
+          legal until it was clear, consistent and signed off.
+        </p>
+      </div>
+
+      {/* At a glance */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-16">
+        <Meta label="Client" value="Barclays" />
+        <Meta label="My role" value="Content strategist and UX writer" />
+        <Meta label="Scope" value="Proposition and onboarding content" />
+      </div>
+
+      {/* The brief */}
+      <Section number="01" title="The brief">
+        <div className="grid sm:grid-cols-2 gap-8 items-start">
+          <div className="space-y-6">
+            <div>
+              <p className="font-medium mb-1">The challenge</p>
+              <p className="text-muted leading-relaxed">
+                Make the proposition and the onboarding process easy to
+                understand.
+              </p>
+            </div>
+            <div>
+              <p className="font-medium mb-1">The solution</p>
+              <p className="text-muted leading-relaxed">
+                Develop clear, consistent copy that supports the user
+                experience, reviewed and signed off with legal and compliance.
+              </p>
+            </div>
+          </div>
+          <Card>
+            <CardLabel>How I helped</CardLabel>
+            <ul className="space-y-3">
+              <ListItem>Writing, editing, testing and refinement</ListItem>
+              <ListItem>Working with a multi-disciplinary team: BAs, tech lead, PM, design, and legal and compliance</ListItem>
+              <ListItem>Messaging and concept development</ListItem>
+            </ul>
+          </Card>
+        </div>
+      </Section>
+
+      {/* Proposition */}
+      <Section number="02" title="Communicating the proposition">
+        <div className="grid sm:grid-cols-2 gap-8 items-start mb-10">
+          <div>
+            <p className="text-lg leading-relaxed mb-6">
+              I worked with the PM and BA to list the features and how they
+              worked, then wrote benefit-led draft lines: what the app does for
+              you, not how it works under the hood. I created 40+ lines across
+              seven features and ran them past the team, who were a very harsh
+              but useful filter.
+            </p>
+            <p className="text-lg leading-relaxed">
+              We then tested the proposition with users across a day: had they
+              heard of the app, which screens appealed most, and could they rank
+              them from most to least important. The winners went forward into
+              the app.
+            </p>
+          </div>
+          <Card>
+            <CardLabel>Why benefit-led</CardLabel>
+            <p className="leading-relaxed text-muted">
+              People do not adopt a feature, they adopt what it does for them.
+              Leading with the benefit made each screen testable: does this line
+              make someone want to use it?
+            </p>
+          </Card>
+        </div>
+        <div className="card overflow-hidden">
+          <Image
+            src="/images/barclays/onboarding-cards.png"
+            alt="Three onboarding screens for the payments app: paying friends with a link, splitting a bill, and setting up charity giving"
+            width={2400}
+            height={1068}
+            className="w-full h-auto"
+          />
+          <div className="p-4 border-t border-border">
+            <p className="text-sm text-muted font-mono">
+              Proposition screens taken forward from testing
+            </p>
+          </div>
+        </div>
+      </Section>
+
+      {/* Onboarding */}
+      <Section number="03" title="Reworking the onboarding">
+        <p className="text-lg leading-relaxed mb-8 max-w-xl">
+          I mapped the existing onboarding with design, UX research and product,
+          then overlaid the insight team's metrics. One step stood out: most
+          people were dropping out when it came to linking their account.
+        </p>
+        <div className="card overflow-hidden mb-10">
+          <Image
+            src="/images/barclays/account-form.png"
+            alt="The account details onboarding screen, where 66% of users dropped out"
+            width={1920}
+            height={1284}
+            className="w-full h-auto"
+          />
+        </div>
+        <div className="grid sm:grid-cols-2 gap-4">
+          <Card>
+            <CardLabel>The CTA was ambiguous</CardLabel>
+            <p className="leading-relaxed text-muted text-sm">
+              "Next" told people nothing about what they were agreeing to or
+              what would happen. It asked for a tap without earning it.
+            </p>
+          </Card>
+          <Card>
+            <CardLabel>The terms had no reference</CardLabel>
+            <p className="leading-relaxed text-muted text-sm">
+              People were asked to accept terms shown on earlier screens, with
+              no way to read them at the point of decision.
+            </p>
+          </Card>
+        </div>
+      </Section>
+
+      {/* Results */}
+      <Section number="04" title="Results">
+        <div className="grid grid-cols-2 gap-4 mb-8">
+          <StatCard value="17%" label="lift in click-through, CTA 'Next' to 'Confirm'" />
+          <StatCard value="66%" label="drop-out at the step we targeted" />
+        </div>
+        <Card className="max-w-xl">
+          <CardLabel>And confidence went up</CardLabel>
+          <p className="leading-relaxed text-muted">
+            Adding a link to the terms and switching the button to "Confirm" did
+            more than lift the numbers. Together they raised users' confidence at
+            the exact moment they committed, which is where trust is won or lost.
+          </p>
+        </Card>
+      </Section>
+    </article>
   );
 }
 
