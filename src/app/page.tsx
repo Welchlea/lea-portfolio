@@ -914,14 +914,15 @@ function ConversationalAIContent() {
       <Section number="02" title="The guiding principles I set">
         <p className="text-lg leading-relaxed mb-8 max-w-xl">
           These are the principles I set for the assistant. They shaped the
-          whole team's thinking, and I wrote them into the Stage 1 system
-          instructions so they shape every reply the model gives.
+          whole team's thinking, and they run through the Stage 1 system
+          instructions I designed and tested, so they shape every reply the
+          model gives.
         </p>
         <div className="space-y-3">
           {[
             { n: "01", t: "Inform, don't instruct", d: "Explain what usually applies and what to check next. Never make the decision for the user." },
             { n: "02", t: "Never imply it knows you", d: "Logged out means no personal data. Treat everything the user says as context, not fact." },
-            { n: "03", t: "Be honest about dates", d: "Tax rules change. Every answer is framed against today's date and points to GOV.UK." },
+            { n: "03", t: "Be honest about dates", d: "Tax rules change. Every answer is framed against today's date and points to the official guidance." },
             { n: "04", t: "Calm, plain English", d: "Neutral authority. No urgency, pressure or judgement." },
             { n: "05", t: "Stop safely", d: "When a question needs certainty, say so and hand over to the right place." },
           ].map((p) => (
@@ -952,7 +953,8 @@ function ConversationalAIContent() {
             </div>
             <p className="text-muted text-sm leading-relaxed">
               Logged out, anonymous. Explains rules, clarifies terms, routes to
-              GOV.UK. No data access, no transactions, no personal data processed.
+              the official guidance. No data access, no transactions, no personal
+              data processed.
             </p>
           </div>
           <div className="card p-6">
@@ -1057,8 +1059,8 @@ else:                                         -> route_to_human`}</code></pre>
       {/* System instructions */}
       <Section number="05" title="Guardrails written as instructions">
         <p className="text-lg leading-relaxed mb-8 max-w-xl">
-          A simplified excerpt of the Stage 1 system instructions I wrote. The
-          design lives here as much as in the screens: what the model may do,
+          A simplified excerpt of the Stage 1 system instructions I designed and
+          tested. The design lives here as much as in the screens: what the model may do,
           what it must never do, and what it does at the boundary.
         </p>
         <div className="rounded-xl border border-border overflow-hidden mb-6 font-mono text-xs sm:text-sm">
@@ -1073,7 +1075,7 @@ date: "{{CURRENT_DATE}}"  # every answer is read against today
 may:
   - explain tax rules and processes at a high level
   - explain common thresholds and eligibility criteria
-  - point people to the right GOV.UK service
+  - point people to the right official service
 
 must_not:
   - ask for or store personal information
@@ -1097,7 +1099,7 @@ tone: [neutral, calm, plain_english, no_urgency]`}</code></pre>
           <Card>
             <CardLabel>Why it matters</CardLabel>
             <p className="leading-relaxed text-muted text-sm">
-              A conversation designer who can write the system instructions, not
+              A conversation designer who can design the system instructions, not
               just the screen copy, shapes every reply the model gives. The
               guardrails are the product.
             </p>
@@ -1161,7 +1163,7 @@ tone: [neutral, calm, plain_english, no_urgency]`}</code></pre>
             src="/images/conversational/chat-screens.png"
             alt="Three chat screens: the start screen shows limits before the user types, the second labels general information, and the third turns the boundary into clear next steps"
             width={2400}
-            height={948}
+            height={906}
             className="w-full h-auto"
           />
         </div>
@@ -1180,7 +1182,7 @@ tone: [neutral, calm, plain_english, no_urgency]`}</code></pre>
             { r: "UC01", t: "Entry triage", f: "Fast triage, plain-English eligibility, routing" },
             { r: "UC02", t: "Deadline recovery", f: "Contain panic, ordered plan, don't catastrophise" },
             { r: "UC03", t: "No account", f: "Remove admin friction, break into steps" },
-            { r: "UC04", t: "Child benefit charge", f: "Explain the concept without judgement" },
+            { r: "UC04", t: "Related benefit charge", f: "Explain the concept without judgement" },
             { r: "UC05", t: "Estimate liability", f: "Bounded estimate, honest about uncertainty" },
             { r: "UC06", t: "Expenses and deductions", f: "Teach with examples, reduce cognitive load" },
             { r: "UC07", t: "Stuck, needs a human", f: "Validate effort, capture context, clean handoff" },
@@ -1240,7 +1242,7 @@ human_in_the_loop: required`}</code></pre>
             </div>
           </div>
           <Card>
-            <CardLabel>Responsible AI rules I wrote</CardLabel>
+            <CardLabel>Responsible AI rules I designed</CardLabel>
             <ul className="space-y-3 text-sm">
               <ListItem>Simulated data only. Never real personal data from anyone.</ListItem>
               <ListItem>No integration with live systems during discovery.</ListItem>
@@ -1256,8 +1258,8 @@ human_in_the_loop: required`}</code></pre>
         <p className="text-lg leading-relaxed mb-8 max-w-xl">
           I led the thinking and set the direction. I shaped the strategy,
           inspired and guided the team, aligned conversational patterns with
-          other government departments, and authored the principles, patterns
-          and system instructions the work was built on.
+          other government departments, and designed, crafted and tested the
+          principles, patterns and system instructions the work was built on.
         </p>
         <div className="grid sm:grid-cols-2 gap-4">
           <Card>
@@ -1272,8 +1274,8 @@ human_in_the_loop: required`}</code></pre>
             <CardLabel>Design and specification</CardLabel>
             <ul className="space-y-3 text-sm">
               <ListItem>Specified the eight use cases, the shared interaction model and the deterministic routing per case.</ListItem>
-              <ListItem>Wrote the Stage 1 system instructions, the behaviour spec and an eight-pattern conversation catalogue.</ListItem>
-              <ListItem>Wrote the golden test cases and the data-governance rules for using a commercial model safely.</ListItem>
+              <ListItem>Designed and crafted the Stage 1 system instructions, the behaviour spec and an eight-pattern conversation catalogue.</ListItem>
+              <ListItem>Crafted and tested the golden test cases, and set the data-governance rules for using a commercial model safely.</ListItem>
               <ListItem>Designed voice-first as a diagnostic, so it works whether it ships as voice or chat.</ListItem>
             </ul>
           </Card>
