@@ -862,8 +862,8 @@ function ConversationalAIContent() {
           <span className="gradient-text">AI assistant</span> should talk about tax
         </h2>
         <p className="text-muted text-lg max-w-xl leading-relaxed">
-          How can a generative AI assistant help people understand tax rules
-          without crossing into personal advice? I led the conversation design
+          How can a generative AI assistant help people understand complicated
+          financial rules without crossing into personal advice? I led the conversation design
           for the discovery. I set the strategy, the maturity model and the
           guiding principles the team built from, then took the Stage 1
           assistant all the way to a design: logged out, guidance only, built to
@@ -922,7 +922,7 @@ function ConversationalAIContent() {
           {[
             { n: "01", t: "Inform, don't instruct", d: "Explain what usually applies and what to check next. Never make the decision for the user." },
             { n: "02", t: "Never imply it knows you", d: "Logged out means no personal data. Treat everything the user says as context, not fact." },
-            { n: "03", t: "Be honest about dates", d: "Tax rules change. Every answer is framed against today's date and points to the official guidance." },
+            { n: "03", t: "Be honest about dates", d: "Complicated financial rules change. Every answer is framed against today's date and points to the official guidance." },
             { n: "04", t: "Calm, plain English", d: "Neutral authority. No urgency, pressure or judgement." },
             { n: "05", t: "Stop safely", d: "When a question needs certainty, say so and hand over to the right place." },
           ].map((p) => (
@@ -1073,7 +1073,7 @@ maturity: stage_1        # logged out, guidance only
 date: "{{CURRENT_DATE}}"  # every answer is read against today
 
 may:
-  - explain tax rules and processes at a high level
+  - explain complicated financial rules and processes at a high level
   - explain common thresholds and eligibility criteria
   - point people to the right official service
 
