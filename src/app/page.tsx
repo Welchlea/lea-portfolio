@@ -853,11 +853,11 @@ function ConversationalAIContent() {
             <span className="ml-2 text-muted">case-study.sh</span>
           </div>
           <div className="px-4 py-4 leading-relaxed">
-            <span className="text-accent">&gt;</span> case_study --client=uk-gov-tax --project=guidance-assistant --stage=1 --year=2026
+            <span className="text-accent">&gt;</span> case_study --client=uk-financial-service --project=guidance-assistant --stage=1 --year=2026
           </div>
         </div>
         <h2 className="text-3xl sm:text-[2.75rem] font-semibold mb-5 leading-tight tracking-tight">
-          Shaping how a government
+          Shaping how an
           <br />
           <span className="gradient-text">AI assistant</span> should talk about money
         </h2>
@@ -873,7 +873,7 @@ function ConversationalAIContent() {
 
       {/* At a glance */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-16">
-        <Meta label="Client" value="A UK government tax service" />
+        <Meta label="Client" value="A UK financial service" />
         <Meta label="When" value="Discovery, Jan to Mar 2026" />
         <Meta label="My role" value="Lead conversation designer" />
         <Meta label="Scope" value="Strategy, principles and Stage 1 design" />
@@ -1258,8 +1258,9 @@ human_in_the_loop: required`}</code></pre>
         <p className="text-lg leading-relaxed mb-8 max-w-xl">
           I led the thinking and set the direction. I shaped the strategy,
           inspired and guided the team, aligned conversational patterns with
-          other government departments, and designed, crafted and tested the
-          principles, patterns and system instructions the work was built on.
+          other teams working on similar services, and designed, crafted and
+          tested the principles, patterns and system instructions the work was
+          built on.
         </p>
         <div className="grid sm:grid-cols-2 gap-4">
           <Card>
