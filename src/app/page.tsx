@@ -882,8 +882,8 @@ function ConversationalAIContent() {
       {/* The problem */}
       <Section number="01" title="The problem">
         <p className="text-lg leading-relaxed mb-8 max-w-xl">
-          Tax feels high stakes, so people need clear answers they can trust.
-          An assistant has to show its limits as clearly as its help.
+          Money questions feel high stakes, so people need clear answers they
+          can trust. An assistant has to show its limits as clearly as its help.
         </p>
         <div className="grid sm:grid-cols-3 gap-4">
           <Card>
@@ -903,7 +903,7 @@ function ConversationalAIContent() {
           <Card>
             <CardLabel>Trust is fragile</CardLabel>
             <p className="leading-relaxed text-muted text-sm">
-              One confident wrong answer about tax can do real harm. The design
+              One confident wrong answer about money can do real harm. The design
               has to make the limits obvious.
             </p>
           </Card>
@@ -1111,7 +1111,7 @@ tone: [neutral, calm, plain_english, no_urgency]`}</code></pre>
       <Section number="06" title="One journey, turn by turn, with risk at every step">
         <p className="text-lg leading-relaxed mb-8 max-w-xl">
           A micro use case: someone has started earning a little on the side and
-          is not sure if they need to tell the tax service. For each moment I
+          is not sure if they need to declare it. For each moment I
           mapped the user's words, the assistant's reply, the risk level and
           whether a human needs to step in. These became golden tests, GT-01
           onward.
@@ -1119,11 +1119,11 @@ tone: [neutral, calm, plain_english, no_urgency]`}</code></pre>
         <div className="space-y-3">
           {[
             { id: "GT-01", m: "User opens", u: "I've started earning a bit on the side. Do I need to tell them?", a: "I can explain the general rules, but I'll need to ask a couple of questions first.", r: "Medium", h: "Not required", i: "Set expectations" },
-            { id: "GT-02", m: "Clarify amount", u: "Probably under a thousand pounds, but I'm not sure.", a: "Thanks. Roughly how much have you earned from this work in the last tax year?", r: "Medium", h: "Not required", i: "Reduce ambiguity" },
+            { id: "GT-02", m: "Clarify amount", u: "Probably under a thousand pounds, but I'm not sure.", a: "Thanks. Roughly how much have you earned from this work in the last year?", r: "Medium", h: "Not required", i: "Reduce ambiguity" },
             { id: "GT-03", m: "Clarify frequency", u: "It's fairly regular now. A few jobs a month.", a: "Thanks, that helps. I'll explain how regular income is usually treated.", r: "Medium", h: "Not required", i: "Is it trading?" },
             { id: "GT-04", m: "User is worried", u: "I don't want to get this wrong and end up with a fine.", a: "I understand. I'll explain the general rules so you know what usually applies.", r: "Medium", h: "Optional", i: "Build trust" },
-            { id: "GT-05", m: "Explain threshold", u: "So if it stays under £1,000 I don't need to do anything?", a: "Generally, if your income stays under £1,000 in a tax year, you usually don't need to register. This is general information.", r: "Medium", h: "Not required", i: "Inform, not advise" },
-            { id: "GT-06", m: "Boundary reached", u: "What should I do next to be certain?", a: "To be certain, you'll need to check your account details or speak to a tax adviser. I can help you find the right place.", r: "High", h: "Required", i: "Stop safely" },
+            { id: "GT-05", m: "Explain threshold", u: "So if it stays under £1,000 I don't need to do anything?", a: "Generally, if your income stays under £1,000 in a year, you usually don't need to register. This is general information.", r: "Medium", h: "Not required", i: "Inform, not advise" },
+            { id: "GT-06", m: "Boundary reached", u: "What should I do next to be certain?", a: "To be certain, you'll need to check your account details or speak to a financial adviser. I can help you find the right place.", r: "High", h: "Required", i: "Stop safely" },
             { id: "GT-07", m: "Handoff", u: "I just want to make sure I'm doing the right thing.", a: "I understand. Here's how you can check your details or get help from an adviser.", r: "High", h: "Completed", i: "Close safely" },
           ].map((t) => (
             <div key={t.id} className="card p-5">
