@@ -63,6 +63,7 @@ const tabs = [
   { id: "ux-writing", label: "UX Writing" },
   { id: "content-strategy", label: "Content Strategy" },
   { id: "e-commerce", label: "E-commerce" },
+  { id: "cv", label: "CV" },
 ] as const;
 
 type TabId = (typeof tabs)[number]["id"];
@@ -142,6 +143,7 @@ export default function Home() {
         {activeTab === "conversational-ai" && <ConversationalAIContent />}
         {activeTab === "content-strategy" && <ContentStrategyContent />}
         {activeTab === "e-commerce" && <EcommerceContent />}
+        {activeTab === "cv" && <CVContent />}
       </main>
 
       {/* Footer */}
@@ -1333,6 +1335,181 @@ function SpineTag({ label, value, high = false }: { label: string; value: string
 }
 
 /* ─── UX Writing Case Study (mortgage journey) ─── */
+/* ─── Barclays mortgage: carousel of real, redacted project slides ─── */
+type Slide = { src: string; w: number; h: number; title: string; caption: string; alt: string };
+
+const BARCLAYS_SLIDES: Slide[] = [
+  {
+    src: "/images/barclays/method.png",
+    w: 2240,
+    h: 1680,
+    title: "Approach and process",
+    caption:
+      "Insight and opportunity first, then prioritise, prototype and test. The space is mapped before a single screen is designed.",
+    alt: "Design approach diagram: insights and opportunities, then prioritise and prototype, then learn and update.",
+  },
+  {
+    src: "/images/barclays/sprint.png",
+    w: 2240,
+    h: 1680,
+    title: "Planning to deliver at speed",
+    caption:
+      "A discovery phase and four two-week sprints, so design, build and testing move together rather than in a line.",
+    alt: "Delivery plan: a discovery phase followed by four two-week sprints across design, develop, test and review.",
+  },
+  {
+    src: "/images/barclays/team.png",
+    w: 2240,
+    h: 1680,
+    title: "The team I helped stand up",
+    caption:
+      "A collaborative squad around the work: product, UX and visual design, copywriting, service design, branch and mortgage representation and tech.",
+    alt: "Team structure diagram showing a product owner, UX and visual designers, a copywriter, a service designer, branch and mortgage representatives, a tester, a front-end developer and a tech architect.",
+  },
+  {
+    src: "/images/barclays/organising-idea.png",
+    w: 2240,
+    h: 1680,
+    title: "The organising idea",
+    caption:
+      "More flexibility and better guidance, meeting what the customer needs, what the business needs and what the brand stands for.",
+    alt: "Organising idea diagram: more flexibility and better guidance lead to an optimised mortgage experience.",
+  },
+  {
+    src: "/images/barclays/jmap1.png",
+    w: 2200,
+    h: 1485,
+    title: "Experience map: consider and search",
+    caption:
+      "The customer's journey towards a property mapped against the mortgage journey, from saving and affordability to agreement in principle.",
+    alt: "Experience map for the consider and search phases, with lanes for the journey towards property, the mortgage journey and back-office processes.",
+  },
+  {
+    src: "/images/barclays/jmap2.png",
+    w: 2200,
+    h: 1485,
+    title: "Experience map: buy and on-going",
+    caption:
+      "From offer and conveyancing to getting the keys, then living with the mortgage: payments, remortgaging and changes in situation.",
+    alt: "Experience map for the buy and on-going phases, from application and valuation through exchange, getting the keys and on-going servicing.",
+  },
+  {
+    src: "/images/barclays/solution-concept.png",
+    w: 2240,
+    h: 1680,
+    title: "The solution concepts",
+    caption:
+      "Three ideas carried the redesign: make the whole process visible, collect information once and reuse it across channels and improve the in-branch moment too.",
+    alt: "Three solution concepts: visibility, cross-channel information collection and the physical in-branch experience.",
+  },
+];
+
+function Carousel({ slides }: { slides: Slide[] }) {
+  const [i, setI] = useState(0);
+  const n = slides.length;
+  const go = (d: number) => setI((prev) => (prev + d + n) % n);
+  const s = slides[i];
+
+  return (
+    <div
+      role="group"
+      aria-roledescription="carousel"
+      aria-label="Project work, slide by slide"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
+        if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
+      }}
+      className="outline-none"
+    >
+      <style>{`@keyframes cfade{from{opacity:0;transform:scale(1.008)}to{opacity:1;transform:none}}.cfade{animation:cfade .35s ease}`}</style>
+
+      {/* Stage */}
+      <div
+        className="relative card overflow-hidden flex items-center justify-center"
+        style={{ background: "var(--backdrop)", minHeight: "clamp(260px, 44vw, 580px)" }}
+      >
+        <Image
+          key={s.src}
+          src={s.src}
+          alt={s.alt}
+          width={s.w}
+          height={s.h}
+          className="cfade object-contain"
+          style={{ maxHeight: "clamp(260px, 44vw, 580px)", maxWidth: "100%", width: "auto", height: "auto" }}
+        />
+
+        <button
+          onClick={() => go(-1)}
+          aria-label="Previous slide"
+          className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full"
+          style={{ width: 44, height: 44, background: "var(--accent)", color: "#fff", boxShadow: "0 3px 12px rgba(0,0,0,.18)" }}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+        <button
+          onClick={() => go(1)}
+          aria-label="Next slide"
+          className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full"
+          style={{ width: 44, height: 44, background: "var(--accent)", color: "#fff", boxShadow: "0 3px 12px rgba(0,0,0,.18)" }}
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>
+        </button>
+
+        <div
+          className="absolute top-3 right-3 font-mono text-xs px-2.5 py-1 rounded-full"
+          style={{ background: "var(--accent-alpha)", color: "var(--accent)" }}
+        >
+          {i + 1} / {n}
+        </div>
+      </div>
+
+      {/* Caption */}
+      <div className="mt-6 min-h-[4.5rem]" aria-live="polite">
+        <p className="font-mono text-xs text-accent uppercase tracking-widest mb-1.5">{s.title}</p>
+        <p className="text-muted leading-relaxed max-w-xl">{s.caption}</p>
+      </div>
+
+      {/* Thumbnails */}
+      <div className="flex gap-2.5 mt-6 overflow-x-auto pb-1" role="tablist" aria-label="Slides">
+        {slides.map((t, idx) => (
+          <button
+            key={t.src}
+            onClick={() => setI(idx)}
+            role="tab"
+            aria-selected={idx === i}
+            aria-label={`Slide ${idx + 1}: ${t.title}`}
+            className="shrink-0 rounded-lg overflow-hidden flex items-center justify-center transition"
+            style={{
+              width: 96,
+              height: 62,
+              border: idx === i ? "2px solid var(--accent)" : "2px solid var(--border)",
+              opacity: idx === i ? 1 : 0.55,
+              background: "var(--backdrop)",
+            }}
+          >
+            <Image src={t.src} alt="" width={t.w} height={t.h} className="object-contain" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto" }} />
+          </button>
+        ))}
+      </div>
+
+      {/* Dots */}
+      <div className="flex gap-2 mt-5 justify-center">
+        {slides.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setI(idx)}
+            aria-label={`Go to slide ${idx + 1}`}
+            aria-current={idx === i ? "true" : undefined}
+            className="h-2 rounded-full transition-all"
+            style={{ width: idx === i ? 24 : 8, background: idx === i ? "var(--accent)" : "var(--border)" }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function UXWritingContent() {
   return (
     <article>
@@ -1396,56 +1573,30 @@ function UXWritingContent() {
 
       {/* How I approached it */}
       <Section number="02" title="How I approached it">
-        <p className="text-lg leading-relaxed mb-8 max-w-xl">
+        <p className="text-lg leading-relaxed max-w-xl">
           I mapped the whole opportunity space before designing anything:
           empathy and experience mapping, interviews, observing behaviours and
           co-creation, then prioritise, prototype and test.
         </p>
-        <div className="card overflow-hidden">
-          <Image
-            src="/images/barclays/method.png"
-            alt="The design approach: insights and opportunities, prioritise and prototype, then learn and update"
-            width={2240}
-            height={1680}
-            className="w-full h-auto"
-          />
-        </div>
       </Section>
 
-      {/* The organising idea */}
-      <Section number="03" title="The organising idea">
+      {/* The work, slide by slide */}
+      <Section number="03" title="The work, slide by slide">
         <p className="text-lg leading-relaxed mb-8 max-w-xl">
-          Three forces had to meet: what the customer needs, what the business
-          needs, and what the brand stands for. The idea that held them together
-          was simple.
+          The real artefacts from the programme: the approach, the team I helped
+          stand up, the delivery plan, the organising idea, the experience map
+          and the solution concepts. Use the arrows, dots or thumbnails to move
+          through them.
         </p>
-        <div className="card overflow-hidden">
-          <Image
-            src="/images/barclays/organising-idea.png"
-            alt="Organising idea: giving the customer more flexibility and better guidance leads to an optimised mortgage experience"
-            width={2240}
-            height={1680}
-            className="w-full h-auto"
-          />
-        </div>
+        <Carousel slides={BARCLAYS_SLIDES} />
       </Section>
 
-      {/* The journey */}
-      <Section number="04" title="The journey, end to end">
+      {/* The content decisions */}
+      <Section number="04" title="The content decisions">
         <p className="text-lg leading-relaxed mb-8 max-w-xl">
-          I mapped one eco-system across every phase and every layer: the
-          customer, the advisor, the alerts, the systems and the measures of
-          success. The content decisions live at each step.
+          The journey is where the writing lives. Two decisions did the most
+          work, each answering something people told us in research.
         </p>
-        <div className="card overflow-hidden mb-8">
-          <Image
-            src="/images/barclays/journey.png"
-            alt="The end-to-end mortgage journey across three phases: explore, apply and complete, and servicing"
-            width={2800}
-            height={972}
-            className="w-full h-auto"
-          />
-        </div>
         <div className="grid sm:grid-cols-2 gap-4">
           <Card>
             <CardLabel>Answer "why don't you know me?"</CardLabel>
@@ -1465,26 +1616,8 @@ function UXWritingContent() {
         </div>
       </Section>
 
-      {/* Solution concepts */}
-      <Section number="05" title="The solution concepts">
-        <p className="text-lg leading-relaxed mb-8 max-w-xl">
-          Three ideas carried the redesign: make the whole process visible,
-          collect information once and reuse it across channels, and make the
-          in-branch moment better, not just the digital one.
-        </p>
-        <div className="card overflow-hidden">
-          <Image
-            src="/images/barclays/solution-concept.png"
-            alt="Three solution concepts: visibility, cross-channel dynamic information collection, and physical experience"
-            width={2240}
-            height={1680}
-            className="w-full h-auto"
-          />
-        </div>
-      </Section>
-
-      {/* Impact */}
-      <Section number="06" title="Impact">
+      {/* Results */}
+      <Section number="05" title="Results">
         <div className="grid grid-cols-2 gap-4 mb-8">
           <StatCard value="up to 60 min" label="cut from the advisor consultation" />
           <StatCard value="4 weeks → digital" label="appointment wait removed from the critical path" />
@@ -1501,7 +1634,7 @@ function UXWritingContent() {
       </Section>
 
       {/* My part */}
-      <Section number="07" title="My part in the work">
+      <Section number="06" title="My part in the work">
         <div className="grid sm:grid-cols-2 gap-4">
           <Card>
             <CardLabel>Journey and content</CardLabel>
@@ -1538,6 +1671,234 @@ function RedactBar({ small = false }: { small?: boolean }) {
           "repeating-linear-gradient(90deg, rgba(255,255,255,0.16) 0 8px, transparent 8px 16px)",
       }}
     />
+  );
+}
+
+/* ─── CV ─── */
+function CVRole({
+  org,
+  period,
+  role,
+  points,
+}: {
+  org: string;
+  period?: string;
+  role?: string;
+  points: string[];
+}) {
+  return (
+    <div className="grid sm:grid-cols-[190px_1fr] gap-2 sm:gap-7">
+      <div>
+        <p className="font-semibold text-sm leading-snug">{org}</p>
+        {period && <p className="font-mono text-xs text-muted mt-1">{period}</p>}
+      </div>
+      <div>
+        {role && <p className="text-sm font-medium text-accent mb-2.5">{role}</p>}
+        <ul className="space-y-2 text-sm">
+          {points.map((p, idx) => (
+            <ListItem key={idx}>{p}</ListItem>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+function CVSkill({ k, v }: { k: string; v: string }) {
+  return (
+    <div className="leading-relaxed">
+      <dt className="font-medium inline">{k}: </dt>
+      <dd className="inline text-muted">{v}</dd>
+    </div>
+  );
+}
+
+function CVContent() {
+  return (
+    <article>
+      {/* Header */}
+      <header className="mb-12 pb-10" style={{ borderBottom: "1px solid var(--border)" }}>
+        <span className="badge mb-6">Curriculum vitae</span>
+        <h2 className="text-4xl sm:text-5xl font-semibold tracking-tight mb-3">Lea Welch</h2>
+        <p className="text-xl text-accent font-medium mb-5">
+          Conversation Design Lead, Conversational AI
+        </p>
+        <p className="text-muted leading-relaxed max-w-2xl mb-7 text-lg">
+          Conversation design lead who makes complex, high-stakes services easy
+          to talk to, from voice banking at Barclays to LLM-based chat for a UK
+          government service.
+        </p>
+        <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+          <a href="mailto:leadocwelch@gmail.com" className="text-muted hover:text-accent transition">
+            leadocwelch@gmail.com
+          </a>
+          <a href="https://www.linkedin.com/in/leawelch" target="_blank" rel="noreferrer" className="text-muted hover:text-accent transition">
+            linkedin.com/in/leawelch
+          </a>
+          <span className="text-muted">Open to hybrid or remote</span>
+        </div>
+      </header>
+
+      {/* I am / I have */}
+      <div className="grid md:grid-cols-2 gap-5 mb-5">
+        <Card>
+          <CardLabel>I am</CardLabel>
+          <ul className="space-y-3 text-sm">
+            <ListItem>A conversation design lead who has shaped how people talk to banks, pension platforms and government services.</ListItem>
+            <ListItem>A content lead who has built teams, set strategy and founded CGI's UCD graduate scheme.</ListItem>
+            <ListItem>A responsible AI practitioner, trained in AI ethics and governance at Oxford Saïd Business School.</ListItem>
+          </ul>
+        </Card>
+        <Card>
+          <CardLabel>I have</CardLabel>
+          <ul className="space-y-3 text-sm">
+            <ListItem>Led conversation design on a UK government CUI Discovery, testing LLM-based chat across public services.</ListItem>
+            <ListItem>Designed the conversation for Barclays' Alexa banking integration.</ListItem>
+            <ListItem>Led content for Vanguard's first UK SIPP, which grew from 900 to 36,000 clients in under a year.</ListItem>
+            <ListItem>Helped cut onboarding drop-offs by 20% for 500,000 Hargreaves Lansdown clients.</ListItem>
+          </ul>
+        </Card>
+      </div>
+
+      {/* Clients + Conversational AI */}
+      <div className="grid md:grid-cols-2 gap-5 mb-16">
+        <Card>
+          <CardLabel>Clients and organisations</CardLabel>
+          <p className="leading-relaxed text-sm text-muted">
+            Barclays, Vanguard, Hargreaves Lansdown, BCG, GDS, Home Office,
+            Ministry of Defence, NSPCC and the Design Council.
+          </p>
+        </Card>
+        <Card>
+          <CardLabel>Conversational AI</CardLabel>
+          <ul className="space-y-2.5 text-sm">
+            <ListItem>Multi-turn dialogue, NLU intents and voice and chat flows</ListItem>
+            <ListItem>Prompt and system prompt design for LLM assistants</ListItem>
+            <ListItem>Testing and evaluating LLM responses in Langfuse</ListItem>
+            <ListItem>Building agents in MindStudio, Copilot Studio and Claude Code</ListItem>
+            <ListItem>Voiceflow and Google Conversational Agents (Dialogflow CX)</ListItem>
+          </ul>
+        </Card>
+      </div>
+
+      {/* Career history */}
+      <Section number="01" title="Career history">
+        <div className="space-y-9">
+          <CVRole
+            org="CGI"
+            period="Nov 2024 to present"
+            role="Senior Content Designer and Conversation Designer"
+            points={[
+              "Led conversation design on a central government CUI Discovery, a 16-week programme testing how LLM-based chat could work across public services.",
+              "Set the conversation design strategy and governance used across the user-centred design team.",
+              "Built agentic prototypes in Microsoft Copilot Studio and Claude Code to test ideas quickly.",
+              "Founded and ran CGI's two-year UCD graduate scheme, designing the programme and mentoring graduates.",
+            ]}
+          />
+          <CVRole
+            org="Hargreaves Lansdown"
+            period="Apr 2023 to May 2024"
+            role="Senior Content Designer, Active Savings"
+            points={[
+              "Owned onboarding content for Active Savings, helping cut drop-offs by 20% across 500,000 clients.",
+              "Brought product, risk, legal and compliance to agreement on wording for regulated products.",
+            ]}
+          />
+          <CVRole
+            org="MOD, Home Office, DIT, DfE and GDS"
+            period="Nov 2020 to Apr 2023"
+            role="Senior Content Designer (contract)"
+            points={[
+              "Led content discovery on cross-government projects, aligning policy, research and engineering.",
+              "Shaped the 'Find and Inform' discovery for MOD, delivering insight and recommendations on content operations.",
+              "Acted as content lead in agile teams on services used by millions.",
+              "Upskilled junior writers through workshops and mentoring.",
+            ]}
+          />
+          <CVRole
+            org="Boston Consulting Group"
+            period="Sep 2019 to Nov 2020"
+            role="Content Lead, Business Process Automation"
+            points={[
+              "Led a team of writers and set the content strategy and operating model for ServiceNow regulatory automation across BCG's clients.",
+            ]}
+          />
+          <CVRole
+            org="Vanguard Asset Management"
+            period="Apr 2017 to Feb 2019"
+            role="Content Lead, Investment Platforms"
+            points={[
+              "Led content for Vanguard's first UK SIPP launch; the platform grew from 900 to 36,000 clients in under a year.",
+              "Set the content strategy, roadmap and design standards for the platform.",
+            ]}
+          />
+          <CVRole
+            org="Barclays Digital Innovations Team"
+            period="Feb 2015 to Apr 2017"
+            role="UX Writer and Conversational Designer"
+            points={[
+              "Designed the conversational logic, intents, multi-turn dialogue and persona tone of voice for Barclays' Alexa banking integration.",
+              "Trained in voice interface design at Amazon's London headquarters.",
+              "Shaped journeys and language for the launch of Pingit and Launchpad.",
+              "Part of the team that won Banking and Investment Website of the Year.",
+            ]}
+          />
+          <CVRole
+            org="Earlier career"
+            points={[
+              "Co-founder of OnceWeWere (brand and digital consultancy), senior copywriter at the NSPCC and digital content manager at the Design Council.",
+            ]}
+          />
+        </div>
+      </Section>
+
+      {/* Skills + certifications */}
+      <Section number="02" title="Skills and credentials">
+        <div className="grid md:grid-cols-2 gap-5">
+          <Card>
+            <CardLabel>Key skills</CardLabel>
+            <dl className="space-y-3 text-sm">
+              <CVSkill k="Leadership" v="design strategy and governance, building and mentoring teams, influencing senior stakeholders" />
+              <CVSkill k="Conversation design" v="NLU intents, multi-turn dialogue, voice and chat interfaces, tone of voice" />
+              <CVSkill k="AI and agents" v="LLM-based interfaces, prompt engineering, LLM evaluation, agentic prototypes" />
+              <CVSkill k="Research" v="discovery, user research, prototype testing, success metrics" />
+              <CVSkill k="Responsible AI" v="AI ethics and governance, accessibility, inclusive design, regulated services" />
+            </dl>
+          </Card>
+          <Card>
+            <CardLabel>Certifications</CardLabel>
+            <ul className="space-y-2.5 text-sm">
+              <ListItem>AI Ethics, Regulation and Compliance, Oxford Saïd Business School</ListItem>
+              <ListItem>Designing Generative AI for Conversations and Content, Convocat</ListItem>
+              <ListItem>Agentic AI Essentials, AWS Partner</ListItem>
+              <ListItem>Generative AI Leadership and Customer Experience, Google</ListItem>
+              <ListItem>Certified Scrum Product Owner (CSPO)</ListItem>
+              <ListItem>CPUX Certified Usability and UX Professional</ListItem>
+            </ul>
+          </Card>
+        </div>
+      </Section>
+
+      {/* Tools + education */}
+      <Section number="03" title="Tools and education">
+        <div className="grid md:grid-cols-2 gap-5">
+          <Card>
+            <CardLabel>Tools</CardLabel>
+            <p className="leading-relaxed text-sm text-muted">
+              Python, Git, Claude Code, Microsoft Copilot Studio, Google Cloud
+              AI, Langfuse, MindStudio, ElevenLabs, Figma, Miro, Google
+              Analytics, Contentful, ServiceNow, Jira and Confluence.
+            </p>
+          </Card>
+          <Card>
+            <CardLabel>Education</CardLabel>
+            <p className="text-sm font-medium mb-1">BA (Hons) Three-Dimensional Design</p>
+            <p className="text-sm text-muted mb-3">Northumbria University</p>
+            <p className="text-sm text-muted">Winner of the Peter Walker Award for Innovation.</p>
+          </Card>
+        </div>
+      </Section>
+    </article>
   );
 }
 
