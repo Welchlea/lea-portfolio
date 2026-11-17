@@ -1335,177 +1335,76 @@ function SpineTag({ label, value, high = false }: { label: string; value: string
 }
 
 /* ─── UX Writing Case Study (mortgage journey) ─── */
-/* ─── Barclays mortgage: carousel of real, redacted project slides ─── */
-type Slide = { src: string; w: number; h: number; title: string; caption: string; alt: string };
+/* ─── UX Writing: before / after specimens ─── */
+type Specimen = { context: string; before: string; after: string; note: string };
 
-const BARCLAYS_SLIDES: Slide[] = [
+const SPECIMENS: Specimen[] = [
   {
-    src: "/images/barclays/method.png",
-    w: 2240,
-    h: 1680,
-    title: "Approach and process",
-    caption:
-      "Insight and opportunity first, then prioritise, prototype and test. The space is mapped before a single screen is designed.",
-    alt: "Design approach diagram: insights and opportunities, then prioritise and prototype, then learn and update.",
+    context: "When the bank asks for a document",
+    before: "Additional documentation is required to progress your application.",
+    after:
+      "We need one more document to finish checking your application. It is a routine step and it will not change the decision. Here is exactly what to send and why.",
+    note:
+      "Research was blunt: being asked for a document made people anxious and afraid it meant bad news. The rewrite gives a reason, names it routine and takes the threat out.",
   },
   {
-    src: "/images/barclays/sprint.png",
-    w: 2240,
-    h: 1680,
-    title: "Planning to deliver at speed",
-    caption:
-      "A discovery phase and four two-week sprints, so design, build and testing move together rather than in a line.",
-    alt: "Delivery plan: a discovery phase followed by four two-week sprints across design, develop, test and review.",
+    context: "A form that is already filled in",
+    before: "Please complete all fields in the application form.",
+    after:
+      "We have filled in what we already know, so you can check it instead of typing it all again. Have a look and tell us if anything has changed.",
+    note:
+      "People kept asking \u201Cwhy don\u2019t you know who I am?\u201D. Turning a blank form into a review answers that, and makes a long task feel short.",
   },
   {
-    src: "/images/barclays/team.png",
-    w: 2240,
-    h: 1680,
-    title: "The team I helped stand up",
-    caption:
-      "A collaborative squad around the work: product, UX and visual design, copywriting, service design, branch and mortgage representation and tech.",
-    alt: "Team structure diagram showing a product owner, UX and visual designers, a copywriter, a service designer, branch and mortgage representatives, a tester, a front-end developer and a tech architect.",
+    context: "Asking people to log in",
+    before: "Log in to continue.",
+    after:
+      "You can carry on without logging in. If you do log in, we will save your progress to My Mortgages and fill in the parts we already know.",
+    note:
+      "Honest about the choice first, then clear about the benefit. No dark pattern, just a plain reason to opt in.",
   },
   {
-    src: "/images/barclays/organising-idea.png",
-    w: 2240,
-    h: 1680,
-    title: "The organising idea",
-    caption:
-      "More flexibility and better guidance, meeting what the customer needs, what the business needs and what the brand stands for.",
-    alt: "Organising idea diagram: more flexibility and better guidance lead to an optimised mortgage experience.",
+    context: "A reminder that something is unfinished",
+    before: "Your mortgage application is incomplete.",
+    after:
+      "Your mortgage request is saved and waiting whenever you are ready. You can finish it online, or book time with an adviser to do it together.",
+    note:
+      "The old line reads like a telling-off. The new one drops the blame and offers two ways forward instead of a dead end.",
   },
   {
-    src: "/images/barclays/jmap1.png",
-    w: 2200,
-    h: 1485,
-    title: "Experience map: consider and search",
-    caption:
-      "The customer's journey towards a property mapped against the mortgage journey, from saving and affordability to agreement in principle.",
-    alt: "Experience map for the consider and search phases, with lanes for the journey towards property, the mortgage journey and back-office processes.",
+    context: "When the review team needs more proof",
+    before:
+      "Underwriting requires further verification. Failure to provide may delay your application.",
+    after:
+      "The team reviewing your application needs one more document to confirm a detail. It is a normal check. Send it when you can and we will keep things moving.",
+    note:
+      "This was the highest-anxiety moment in the whole journey. \u201CFailure to provide\u201D became \u201Csend it when you can\u201D, with the reassurance that it is normal.",
   },
   {
-    src: "/images/barclays/jmap2.png",
-    w: 2200,
-    h: 1485,
-    title: "Experience map: buy and on-going",
-    caption:
-      "From offer and conveyancing to getting the keys, then living with the mortgage: payments, remortgaging and changes in situation.",
-    alt: "Experience map for the buy and on-going phases, from application and valuation through exchange, getting the keys and on-going servicing.",
-  },
-  {
-    src: "/images/barclays/solution-concept.png",
-    w: 2240,
-    h: 1680,
-    title: "The solution concepts",
-    caption:
-      "Three ideas carried the redesign: make the whole process visible, collect information once and reuse it across channels and improve the in-branch moment too.",
-    alt: "Three solution concepts: visibility, cross-channel information collection and the physical in-branch experience.",
+    context: "The long wait after a decision",
+    before: "Your application is now being processed.",
+    after:
+      "Nothing is needed from you right now. We are getting your valuation booked and will tell you the date as soon as it is set.",
+    note:
+      "In the old journey people often heard nothing for weeks, so they chased. A short update that says nothing is needed is often the most reassuring message you can send.",
   },
 ];
 
-function Carousel({ slides }: { slides: Slide[] }) {
-  const [i, setI] = useState(0);
-  const n = slides.length;
-  const go = (d: number) => setI((prev) => (prev + d + n) % n);
-  const s = slides[i];
-
+function BeforeAfter({ context, before, after, note }: Specimen) {
   return (
-    <div
-      role="group"
-      aria-roledescription="carousel"
-      aria-label="Project work, slide by slide"
-      tabIndex={0}
-      onKeyDown={(e) => {
-        if (e.key === "ArrowLeft") { e.preventDefault(); go(-1); }
-        if (e.key === "ArrowRight") { e.preventDefault(); go(1); }
-      }}
-      className="outline-none"
-    >
-      <style>{`@keyframes cfade{from{opacity:0;transform:scale(1.008)}to{opacity:1;transform:none}}.cfade{animation:cfade .35s ease}`}</style>
-
-      {/* Stage */}
-      <div
-        className="relative card overflow-hidden flex items-center justify-center"
-        style={{ background: "var(--backdrop)", minHeight: "clamp(260px, 44vw, 580px)" }}
-      >
-        <Image
-          key={s.src}
-          src={s.src}
-          alt={s.alt}
-          width={s.w}
-          height={s.h}
-          className="cfade object-contain"
-          style={{ maxHeight: "clamp(260px, 44vw, 580px)", maxWidth: "100%", width: "auto", height: "auto" }}
-        />
-
-        <button
-          onClick={() => go(-1)}
-          aria-label="Previous slide"
-          className="absolute left-3 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full"
-          style={{ width: 44, height: 44, background: "var(--accent)", color: "#fff", boxShadow: "0 3px 12px rgba(0,0,0,.18)" }}
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
-        </button>
-        <button
-          onClick={() => go(1)}
-          aria-label="Next slide"
-          className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center justify-center rounded-full"
-          style={{ width: 44, height: 44, background: "var(--accent)", color: "#fff", boxShadow: "0 3px 12px rgba(0,0,0,.18)" }}
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 18l6-6-6-6" /></svg>
-        </button>
-
-        <div
-          className="absolute top-3 right-3 font-mono text-xs px-2.5 py-1 rounded-full"
-          style={{ background: "var(--accent-alpha)", color: "var(--accent)" }}
-        >
-          {i + 1} / {n}
+    <div className="card">
+      <p className="font-mono text-xs text-accent uppercase tracking-widest mb-4">{context}</p>
+      <div className="grid sm:grid-cols-2 gap-4 mb-4">
+        <div className="rounded-lg p-4 h-full" style={{ border: "1px solid var(--border)" }}>
+          <p className="text-[0.7rem] font-semibold uppercase tracking-widest mb-2" style={{ color: "var(--muted)" }}>Before</p>
+          <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>&ldquo;{before}&rdquo;</p>
+        </div>
+        <div className="rounded-lg p-4 h-full" style={{ border: "1px solid var(--accent)", background: "var(--accent-alpha)" }}>
+          <p className="text-[0.7rem] font-semibold uppercase tracking-widest mb-2 text-accent">After</p>
+          <p className="text-sm leading-relaxed">&ldquo;{after}&rdquo;</p>
         </div>
       </div>
-
-      {/* Caption */}
-      <div className="mt-6 min-h-[4.5rem]" aria-live="polite">
-        <p className="font-mono text-xs text-accent uppercase tracking-widest mb-1.5">{s.title}</p>
-        <p className="text-muted leading-relaxed max-w-xl">{s.caption}</p>
-      </div>
-
-      {/* Thumbnails */}
-      <div className="flex gap-2.5 mt-6 overflow-x-auto pb-1" role="tablist" aria-label="Slides">
-        {slides.map((t, idx) => (
-          <button
-            key={t.src}
-            onClick={() => setI(idx)}
-            role="tab"
-            aria-selected={idx === i}
-            aria-label={`Slide ${idx + 1}: ${t.title}`}
-            className="shrink-0 rounded-lg overflow-hidden flex items-center justify-center transition"
-            style={{
-              width: 96,
-              height: 62,
-              border: idx === i ? "2px solid var(--accent)" : "2px solid var(--border)",
-              opacity: idx === i ? 1 : 0.55,
-              background: "var(--backdrop)",
-            }}
-          >
-            <Image src={t.src} alt="" width={t.w} height={t.h} className="object-contain" style={{ maxWidth: "100%", maxHeight: "100%", width: "auto", height: "auto" }} />
-          </button>
-        ))}
-      </div>
-
-      {/* Dots */}
-      <div className="flex gap-2 mt-5 justify-center">
-        {slides.map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => setI(idx)}
-            aria-label={`Go to slide ${idx + 1}`}
-            aria-current={idx === i ? "true" : undefined}
-            className="h-2 rounded-full transition-all"
-            style={{ width: idx === i ? 24 : 8, background: idx === i ? "var(--accent)" : "var(--border)" }}
-          />
-        ))}
-      </div>
+      <p className="text-sm text-muted leading-relaxed">{note}</p>
     </div>
   );
 }
@@ -1580,37 +1479,54 @@ function UXWritingContent() {
         </p>
       </Section>
 
-      {/* The work, slide by slide */}
-      <Section number="03" title="The work, slide by slide">
+      {/* The words, before and after */}
+      <Section number="03" title="The words, before and after">
         <p className="text-lg leading-relaxed mb-8 max-w-xl">
-          The real artefacts from the programme: the approach, the team I helped
-          stand up, the delivery plan, the organising idea, the experience map
-          and the solution concepts. Use the arrows, dots or thumbnails to move
-          through them.
+          A mortgage is full of moments where the wrong words make people
+          anxious. Here is some of the copy I wrote, next to the kind of bank
+          message it replaced.
         </p>
-        <Carousel slides={BARCLAYS_SLIDES} />
+        <div className="space-y-4">
+          {SPECIMENS.map((sp, idx) => (
+            <BeforeAfter key={idx} {...sp} />
+          ))}
+        </div>
       </Section>
 
-      {/* The content decisions */}
-      <Section number="04" title="The content decisions">
+      {/* Smaller moments */}
+      <Section number="04" title="Smaller moments, same rules">
         <p className="text-lg leading-relaxed mb-8 max-w-xl">
-          The journey is where the writing lives. Two decisions did the most
-          work, each answering something people told us in research.
+          Labels, buttons and nudges carry as much weight as the long messages.
+          A few of the smaller decisions:
         </p>
         <div className="grid sm:grid-cols-2 gap-4">
           <Card>
-            <CardLabel>Answer "why don't you know me?"</CardLabel>
+            <CardLabel>Name the next step, not the system</CardLabel>
             <p className="leading-relaxed text-muted text-sm">
-              Pre-fill the application from what the bank already holds, so
-              people review rather than retype, and the bank feels like it knows
-              them.
+              &ldquo;View your recommended Key Facts Illustration&rdquo; replaced
+              a screen full of jargon, so people know what to tap and why.
             </p>
           </Card>
           <Card>
-            <CardLabel>From admin to advice</CardLabel>
+            <CardLabel>One home for everything</CardLabel>
             <p className="leading-relaxed text-muted text-sm">
-              Move document upload and checks before the appointment, so the
-              conversation is about the customer, not their paperwork.
+              &ldquo;My Mortgages&rdquo; gave the whole process a single,
+              plain-English home, so people always knew where their application
+              lived.
+            </p>
+          </Card>
+          <Card>
+            <CardLabel>Give people a real choice</CardLabel>
+            <p className="leading-relaxed text-muted text-sm">
+              &ldquo;You can carry on without logging in&rdquo; said the quiet
+              part out loud, then explained what logging in would save them.
+            </p>
+          </Card>
+          <Card>
+            <CardLabel>Say when nothing is needed</CardLabel>
+            <p className="leading-relaxed text-muted text-sm">
+              &ldquo;Nothing is needed from you right now&rdquo; during a long
+              wait stopped people worrying they had missed a step.
             </p>
           </Card>
         </div>
