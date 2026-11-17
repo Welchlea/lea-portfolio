@@ -1332,156 +1332,212 @@ function SpineTag({ label, value, high = false }: { label: string; value: string
   );
 }
 
-/* ─── UX Writing Case Study (Barclays payments app) ─── */
+/* ─── UX Writing Case Study (mortgage journey) ─── */
 function UXWritingContent() {
   return (
     <article>
       {/* Case Study Header */}
       <div className="mb-14 sm:mb-20">
         <span className="badge mb-6">Case Study</span>
+        <div className="flex items-center gap-3 mb-6">
+          <RedactBar />
+          <span className="text-sm text-muted">client redacted</span>
+        </div>
         <h2 className="text-3xl sm:text-[2.75rem] font-semibold mb-5 leading-tight tracking-tight">
-          Making a payments app
+          The first end-to-end
           <br />
-          <span className="gradient-text">easy to understand</span>
+          <span className="gradient-text">digital mortgage journey</span>
         </h2>
         <p className="text-muted text-lg max-w-xl leading-relaxed">
-          Barclays launched a contactless payments app to over 11 million
-          customers. I was brought on to shape the proposition and onboarding
-          content: writing, testing and refining the copy with UX, product and
-          legal until it was clear, consistent and signed off.
+          A major UK bank's mortgage process was fragmented, branch-heavy and
+          generic. I helped design a single journey, from the first calculator
+          visit to completion, that pre-fills what the bank already knows, lets
+          people apply and upload digitally, and frees advisors to advise
+          instead of pushing paperwork.
         </p>
       </div>
 
       {/* At a glance */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-16">
-        <Meta label="Client" value="Barclays" />
-        <Meta label="My role" value="Content strategist and UX writer" />
-        <Meta label="Scope" value="Proposition and onboarding content" />
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-16">
+        <div>
+          <p className="font-mono text-xs text-accent uppercase tracking-widest mb-1">Client</p>
+          <RedactBar small />
+        </div>
+        <Meta label="My role" value="Content and journey designer" />
+        <Meta label="Scope" value="End-to-end mortgage journey" />
+        <Meta label="Phases" value="Explore, Apply, Servicing" />
       </div>
 
-      {/* The brief */}
-      <Section number="01" title="The brief">
-        <div className="grid sm:grid-cols-2 gap-8 items-start">
-          <div className="space-y-6">
-            <div>
-              <p className="font-medium mb-1">The challenge</p>
-              <p className="text-muted leading-relaxed">
-                Make the proposition and the onboarding process easy to
-                understand.
-              </p>
-            </div>
-            <div>
-              <p className="font-medium mb-1">The solution</p>
-              <p className="text-muted leading-relaxed">
-                Develop clear, consistent copy that supports the user
-                experience, reviewed and signed off with legal and compliance.
-              </p>
-            </div>
-          </div>
+      {/* The old experience */}
+      <Section number="01" title="The old experience">
+        <p className="text-lg leading-relaxed mb-8 max-w-xl">
+          Taking out a mortgage was slow, generic and anxious. People felt the
+          bank did not know them, even when it already held their details.
+        </p>
+        <div className="grid sm:grid-cols-2 gap-4">
           <Card>
-            <CardLabel>How I helped</CardLabel>
-            <ul className="space-y-3">
-              <ListItem>Writing, editing, testing and refinement</ListItem>
-              <ListItem>Working with a multi-disciplinary team: BAs, tech lead, PM, design, and legal and compliance</ListItem>
-              <ListItem>Messaging and concept development</ListItem>
+            <CardLabel>What people felt</CardLabel>
+            <ul className="space-y-3 text-sm">
+              <ListItem>"Why don't you know who I am?"</ListItem>
+              <ListItem>Fear of making the wrong decision</ListItem>
+              <ListItem>Paperwork felt endless, "like going to trial"</ListItem>
+            </ul>
+          </Card>
+          <Card>
+            <CardLabel>What the process cost</CardLabel>
+            <ul className="space-y-3 text-sm">
+              <ListItem>Around a four-week wait for an appointment</ListItem>
+              <ListItem>Long, admin-heavy interviews</ListItem>
+              <ListItem>No way to track progress online</ListItem>
             </ul>
           </Card>
         </div>
       </Section>
 
-      {/* Proposition */}
-      <Section number="02" title="Communicating the proposition">
-        <div className="grid sm:grid-cols-2 gap-8 items-start mb-10">
-          <div>
-            <p className="text-lg leading-relaxed mb-6">
-              I worked with the PM and BA to list the features and how they
-              worked, then wrote benefit-led draft lines: what the app does for
-              you, not how it works under the hood. I created 40+ lines across
-              seven features and ran them past the team, who were a very harsh
-              but useful filter.
-            </p>
-            <p className="text-lg leading-relaxed">
-              We then tested the proposition with users across a day: had they
-              heard of the app, which screens appealed most, and could they rank
-              them from most to least important. The winners went forward into
-              the app.
-            </p>
-          </div>
-          <Card>
-            <CardLabel>Why benefit-led</CardLabel>
-            <p className="leading-relaxed text-muted">
-              People do not adopt a feature, they adopt what it does for them.
-              Leading with the benefit made each screen testable: does this line
-              make someone want to use it?
-            </p>
-          </Card>
-        </div>
+      {/* How I approached it */}
+      <Section number="02" title="How I approached it">
+        <p className="text-lg leading-relaxed mb-8 max-w-xl">
+          I mapped the whole opportunity space before designing anything:
+          empathy and experience mapping, interviews, observing behaviours and
+          co-creation, then prioritise, prototype and test.
+        </p>
         <div className="card overflow-hidden">
           <Image
-            src="/images/barclays/onboarding-cards.png"
-            alt="Three onboarding screens for the payments app: paying friends with a link, splitting a bill, and setting up charity giving"
-            width={2400}
-            height={1068}
+            src="/images/barclays/method.png"
+            alt="The design approach: insights and opportunities, prioritise and prototype, then learn and update"
+            width={2240}
+            height={1680}
             className="w-full h-auto"
           />
-          <div className="p-4 border-t border-border">
-            <p className="text-sm text-muted font-mono">
-              Proposition screens taken forward from testing
-            </p>
-          </div>
         </div>
       </Section>
 
-      {/* Onboarding */}
-      <Section number="03" title="Reworking the onboarding">
+      {/* The organising idea */}
+      <Section number="03" title="The organising idea">
         <p className="text-lg leading-relaxed mb-8 max-w-xl">
-          I mapped the existing onboarding with design, UX research and product,
-          then overlaid the insight team's metrics. One step stood out: most
-          people were dropping out when it came to linking their account.
+          Three forces had to meet: what the customer needs, what the business
+          needs, and what the brand stands for. The idea that held them together
+          was simple.
         </p>
-        <div className="card overflow-hidden mb-10">
+        <div className="card overflow-hidden">
           <Image
-            src="/images/barclays/account-form.png"
-            alt="The account details onboarding screen, where 66% of users dropped out"
-            width={1920}
-            height={1284}
+            src="/images/barclays/organising-idea.png"
+            alt="Organising idea: giving the customer more flexibility and better guidance leads to an optimised mortgage experience"
+            width={2240}
+            height={1680}
+            className="w-full h-auto"
+          />
+        </div>
+      </Section>
+
+      {/* The journey */}
+      <Section number="04" title="The journey, end to end">
+        <p className="text-lg leading-relaxed mb-8 max-w-xl">
+          I mapped one eco-system across every phase and every layer: the
+          customer, the advisor, the alerts, the systems and the measures of
+          success. The content decisions live at each step.
+        </p>
+        <div className="card overflow-hidden mb-8">
+          <Image
+            src="/images/barclays/journey.png"
+            alt="The end-to-end mortgage journey across three phases: explore, apply and complete, and servicing"
+            width={2800}
+            height={972}
             className="w-full h-auto"
           />
         </div>
         <div className="grid sm:grid-cols-2 gap-4">
           <Card>
-            <CardLabel>The CTA was ambiguous</CardLabel>
+            <CardLabel>Answer "why don't you know me?"</CardLabel>
             <p className="leading-relaxed text-muted text-sm">
-              "Next" told people nothing about what they were agreeing to or
-              what would happen. It asked for a tap without earning it.
+              Pre-fill the application from what the bank already holds, so
+              people review rather than retype, and the bank feels like it knows
+              them.
             </p>
           </Card>
           <Card>
-            <CardLabel>The terms had no reference</CardLabel>
+            <CardLabel>From admin to advice</CardLabel>
             <p className="leading-relaxed text-muted text-sm">
-              People were asked to accept terms shown on earlier screens, with
-              no way to read them at the point of decision.
+              Move document upload and checks before the appointment, so the
+              conversation is about the customer, not their paperwork.
             </p>
           </Card>
         </div>
       </Section>
 
-      {/* Results */}
-      <Section number="04" title="Results">
+      {/* Solution concepts */}
+      <Section number="05" title="The solution concepts">
+        <p className="text-lg leading-relaxed mb-8 max-w-xl">
+          Three ideas carried the redesign: make the whole process visible,
+          collect information once and reuse it across channels, and make the
+          in-branch moment better, not just the digital one.
+        </p>
+        <div className="card overflow-hidden">
+          <Image
+            src="/images/barclays/solution-concept.png"
+            alt="Three solution concepts: visibility, cross-channel dynamic information collection, and physical experience"
+            width={2240}
+            height={1680}
+            className="w-full h-auto"
+          />
+        </div>
+      </Section>
+
+      {/* Impact */}
+      <Section number="06" title="Impact">
         <div className="grid grid-cols-2 gap-4 mb-8">
-          <StatCard value="17%" label="lift in click-through, CTA 'Next' to 'Confirm'" />
-          <StatCard value="66%" label="drop-out at the step we targeted" />
+          <StatCard value="up to 60 min" label="cut from the advisor consultation" />
+          <StatCard value="4 weeks → digital" label="appointment wait removed from the critical path" />
         </div>
         <Card className="max-w-xl">
-          <CardLabel>And confidence went up</CardLabel>
+          <CardLabel>Why it works</CardLabel>
           <p className="leading-relaxed text-muted">
-            Adding a link to the terms and switching the button to "Confirm" did
-            more than lift the numbers. Together they raised users' confidence at
-            the exact moment they committed, which is where trust is won or lost.
+            Asking people to log in and pre-filling their details does two things
+            at once: it cuts the time to apply, and it lets the bank follow up,
+            which brings the drop-off down. Less effort for the customer, more
+            traceability for the bank.
           </p>
         </Card>
       </Section>
+
+      {/* My part */}
+      <Section number="07" title="My part in the work">
+        <div className="grid sm:grid-cols-2 gap-4">
+          <Card>
+            <CardLabel>Journey and content</CardLabel>
+            <ul className="space-y-3 text-sm">
+              <ListItem>Mapped the end-to-end journey across customer, advisor, alerts and systems.</ListItem>
+              <ListItem>Turned user needs and insights into the content at each step.</ListItem>
+              <ListItem>Wrote the alerts and comms that keep people informed through every wait.</ListItem>
+            </ul>
+          </Card>
+          <Card>
+            <CardLabel>Shaping the experience</CardLabel>
+            <ul className="space-y-3 text-sm">
+              <ListItem>Framed the organising idea and the solution concepts with the team.</ListItem>
+              <ListItem>Redesigned the advisor conversation from admin to advice.</ListItem>
+              <ListItem>Set the structure for a single "My Mortgages" home for the whole process.</ListItem>
+            </ul>
+          </Card>
+        </div>
+      </Section>
     </article>
+  );
+}
+
+/* ─── UX Writing helper: in-brand redaction bar ─── */
+function RedactBar({ small = false }: { small?: boolean }) {
+  return (
+    <span
+      className="inline-block rounded-md align-middle"
+      style={{
+        background: "#00AEEF",
+        height: small ? "18px" : "26px",
+        width: small ? "92px" : "140px",
+        backgroundImage:
+          "repeating-linear-gradient(90deg, rgba(255,255,255,0.16) 0 8px, transparent 8px 16px)",
+      }}
+    />
   );
 }
 
