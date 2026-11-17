@@ -857,15 +857,17 @@ function ConversationalAIContent() {
           </div>
         </div>
         <h2 className="text-3xl sm:text-[2.75rem] font-semibold mb-5 leading-tight tracking-tight">
-          Designing a safe
+          Shaping how a government
           <br />
-          <span className="gradient-text">first conversation</span> for an AI tax assistant
+          <span className="gradient-text">AI assistant</span> should talk about tax
         </h2>
         <p className="text-muted text-lg max-w-xl leading-relaxed">
           How can a generative AI assistant help people understand tax rules
           without crossing into personal advice? I led the conversation design
-          for Stage 1: logged out, guidance only, and built to stop safely when
-          a question needs a person.
+          for the discovery. I set the strategy, the maturity model and the
+          guiding principles the team built from, then took the Stage 1
+          assistant all the way to a design: logged out, guidance only, built to
+          stop safely when a question needs a person.
         </p>
       </div>
 
@@ -873,8 +875,8 @@ function ConversationalAIContent() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-16">
         <Meta label="Client" value="A UK government tax service" />
         <Meta label="When" value="Discovery, Jan to Mar 2026" />
-        <Meta label="My role" value="Conversation designer" />
-        <Meta label="Scope" value="Stage 1: logged out, guidance only" />
+        <Meta label="My role" value="Lead conversation designer" />
+        <Meta label="Scope" value="Strategy, principles and Stage 1 design" />
       </div>
 
       {/* The problem */}
@@ -909,10 +911,11 @@ function ConversationalAIContent() {
       </Section>
 
       {/* Design principles */}
-      <Section number="02" title="Five rules the assistant follows">
+      <Section number="02" title="The guiding principles I set">
         <p className="text-lg leading-relaxed mb-8 max-w-xl">
-          I wrote these into the Stage 1 system instructions, so they shape
-          every reply the model gives.
+          These are the principles I set for the assistant. They shaped the
+          whole team's thinking, and I wrote them into the Stage 1 system
+          instructions so they shape every reply the model gives.
         </p>
         <div className="space-y-3">
           {[
@@ -936,9 +939,10 @@ function ConversationalAIContent() {
       {/* Maturity model */}
       <Section number="03" title="A maturity model, Stage 1 to Stage 3">
         <p className="text-lg leading-relaxed mb-8 max-w-xl">
-          I mapped three stages of capability so the client could see the whole
-          road, then commit only to the safe first step. I designed Stage 1 and
-          set the requirements for the two that follow.
+          I set the strategy for the whole programme: a three-stage maturity
+          model so the client could see the whole road and commit only to the
+          safe first step. I designed Stage 1 in full and defined what Stages 2
+          and 3 would need.
         </p>
         <div className="space-y-4 mb-8">
           <div className="card p-6 border-l-[3px] border-accent" style={{ background: "var(--accent-alpha)" }}>
@@ -1249,6 +1253,12 @@ human_in_the_loop: required`}</code></pre>
 
       {/* What I did */}
       <Section number="10" title="My part in the work">
+        <p className="text-lg leading-relaxed mb-8 max-w-xl">
+          I led the thinking and set the direction. I shaped the strategy,
+          inspired and guided the team, aligned conversational patterns with
+          other government departments, and authored the principles, patterns
+          and system instructions the work was built on.
+        </p>
         <div className="grid sm:grid-cols-2 gap-4">
           <Card>
             <CardLabel>Framing and research</CardLabel>
