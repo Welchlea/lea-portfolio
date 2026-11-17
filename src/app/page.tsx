@@ -681,65 +681,157 @@ function EcommerceContent() {
       <div className="mb-14 sm:mb-20">
         <span className="badge mb-6">Case Study</span>
         <h2 className="text-3xl sm:text-[2.75rem] font-semibold mb-5 leading-tight tracking-tight">
-          Handshake at Shopify,
+          Finding Handshake
           <br />
-          <span className="gradient-text">a B2B wholesale marketplace</span>
+          <span className="gradient-text">a voice to sell wholesale</span>
         </h2>
         <p className="text-muted text-lg max-w-xl leading-relaxed">
-          Product taxonomy and brand content architecture for Shopify&apos;s
-          B2B wholesale marketplace Handshake.
+          Rewriting email and site copy for Handshake, Shopify&apos;s B2B
+          wholesale marketplace, so a plain product feed read like a brand
+          people wanted to hear from.
         </p>
       </div>
 
-      {/* Handshake */}
-      <Section number="01" title="Taxonomy and brand architecture">
+      {/* Hero Image */}
+      <div className="card overflow-hidden mb-16">
+        <Image
+          src="/images/ecommerce/hero.jpg"
+          alt="Handshake by Shopify homepage showing featured brands and a retailer testimonial"
+          width={1200}
+          height={750}
+          className="w-full h-64 sm:h-96 object-cover"
+          priority
+        />
+      </div>
+
+      {/* The Brief */}
+      <Section number="01" title="The brief">
         <div className="grid sm:grid-cols-2 gap-8 items-start">
           <div>
             <p className="text-lg leading-relaxed mb-6">
-              Handshake was Shopify&apos;s B2B wholesale marketplace. The content
-              design consultancy covered product taxonomy and brand content
-              architecture.
-            </p>
-            <p className="text-lg leading-relaxed mb-6">
-              <strong>Taxonomy V2</strong> was a reclassification of the
-              marketplace&apos;s product categorisation system, restructuring how
-              wholesale products were organised, browsed and filtered.
-            </p>
-            <p className="text-lg leading-relaxed">
-              <strong>The Brand Refresh</strong> addressed brand dilution across
-              product, email, social and blog. Deliverables included Shopify
-              connection guidelines, logo usage rules, typography hierarchy, art
-              direction, colour palette and a consolidated brand book. Each was a
-              reusable content governance artefact.
+              Handshake was Shopify&apos;s B2B wholesale marketplace,
+              connecting independent brands with retailers. I worked as a
+              content design consultant on two parts of the business: Taxonomy
+              V2, a rebuild of how products were classified and browsed, and a
+              brand voice refresh across email, social and blog.
             </p>
           </div>
-          <div className="space-y-4">
-            <Card>
-              <CardLabel>Content strategy insight</CardLabel>
-              <p className="leading-relaxed text-muted">
-                The ambiguous connection between Handshake and Shopify was
-                causing merchant confusion. New sign-ups received Handshake
-                emails without understanding the relationship, pointing to a gap
-                in onboarding content architecture rather than just a visual
-                identity problem.
-              </p>
-            </Card>
-            <div className="space-y-1">
-              <Stat label="Email open rate (Merchant Outreach)" value="24%" />
-              <Stat label="Email open rate (Trending Products)" value="22.6%" />
-            </div>
+          <Card>
+            <CardLabel>Content strategy insight</CardLabel>
+            <p className="leading-relaxed text-muted">
+              The ambiguous connection between Handshake and Shopify was
+              causing merchant confusion. New sign-ups received Handshake
+              emails without understanding the relationship, pointing to a gap
+              in onboarding content architecture rather than just a visual
+              identity problem.
+            </p>
+          </Card>
+        </div>
+      </Section>
+
+      {/* From template to voice */}
+      <Section number="02" title="From template to voice">
+        <p className="text-lg leading-relaxed mb-8 max-w-xl">
+          Before the refresh, every newsletter used the same subject line and
+          the same flat, tag-based brand descriptions. There was no link to
+          the season, no story and no personality.
+        </p>
+        <div className="space-y-4 mb-8">
+          <div className="rounded-xl border-l-[3px] border-accent p-5" style={{ background: "var(--accent-alpha)" }}>
+            <p className="font-medium mb-1 text-sm">Before</p>
+            <p className="text-muted text-sm">
+              Subject line &ldquo;Exciting Shopify brands that sell
+              wholesale&rdquo;, reused for months. Brands described only by
+              tags: women-owned, handmade, eco-friendly.
+            </p>
+          </div>
+          <div className="rounded-xl border-l-[3px] border-green-500 p-5" style={{ background: "rgba(34, 197, 94, 0.06)" }}>
+            <p className="font-medium mb-1 text-sm">After</p>
+            <p className="text-muted text-sm">
+              Subject line &ldquo;5 brands you&apos;ll fall in love
+              with&rdquo;, a Valentine&apos;s-themed edition. Brand copy
+              became short stories about real founders, like the pair who
+              &ldquo;dreamed of creating eye-popping, bold bandanas&rdquo;.
+            </p>
+          </div>
+        </div>
+        <div className="card overflow-hidden">
+          <Image
+            src="/images/ecommerce/lifecycle-email.jpg"
+            alt="A Handshake lifecycle email explaining 60-day payment terms for retailers"
+            width={1200}
+            height={700}
+            className="w-full"
+          />
+          <div className="p-4 border-t border-border">
+            <p className="text-sm text-muted font-mono">
+              A lifecycle email introducing net terms, written in the new,
+              benefit-led voice
+            </p>
           </div>
         </div>
       </Section>
 
-      {/* What This Demonstrates */}
-      <Section number="02" title="What this work demonstrates">
+      {/* Six ways to talk about the same marketplace */}
+      <Section number="03" title="Six ways to talk about the same marketplace">
+        <div className="card overflow-hidden mb-8">
+          <Image
+            src="/images/ecommerce/brand-stories.jpg"
+            alt="Handshake brand story pages, supplier spotlights and an onboarding video"
+            width={1200}
+            height={750}
+            className="w-full"
+          />
+        </div>
         <div className="grid sm:grid-cols-2 gap-4">
+          {[
+            {
+              title: "Themed picks",
+              desc: "Product edits tied to a season or a mood, like Valentine's Day or sustainable living.",
+            },
+            {
+              title: "Cultural moments",
+              desc: "Editions built around Black History Month and Earth Day, giving the curation a reason beyond selling.",
+            },
+            {
+              title: "New brand drops",
+              desc: "A sense of arrival when fresh suppliers joined, with FOMO-driven subject lines.",
+            },
+            {
+              title: "Brand stories",
+              desc: "Short features on the people behind a brand, not just the product.",
+            },
+            {
+              title: "Community building",
+              desc: "Invitations into a retailer group, not another sales pitch.",
+            },
+            {
+              title: "Promotions and events",
+              desc: "Countdown and launch emails for things like free shipping and a virtual trade show.",
+            },
+          ].map((item) => (
+            <Card key={item.title}>
+              <CardLabel>{item.title}</CardLabel>
+              <p className="leading-relaxed text-muted text-sm">{item.desc}</p>
+            </Card>
+          ))}
+        </div>
+      </Section>
+
+      {/* Results */}
+      <Section number="04" title="Results">
+        <div className="grid sm:grid-cols-2 gap-6 items-start">
+          <div className="space-y-1">
+            <Stat label="Email open rate (Merchant Outreach)" value="24%" />
+            <Stat label="Email open rate (Trending Products)" value="22.6%" />
+          </div>
           <Card>
-            <CardLabel>Brand as a content system</CardLabel>
+            <CardLabel>What this shows</CardLabel>
             <p className="leading-relaxed text-muted text-sm">
-              Brand identity treated as reusable content components: guidelines,
-              templates and rules rather than a one-off design project.
+              Brand identity treated as a content system: a consistent voice
+              that could flex across a product pick, a cultural moment or a
+              countdown, built from reusable rules rather than a one-off
+              design project.
             </p>
           </Card>
         </div>
