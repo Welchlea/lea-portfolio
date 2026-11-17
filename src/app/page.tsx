@@ -859,7 +859,7 @@ function ConversationalAIContent() {
         <h2 className="text-3xl sm:text-[2.75rem] font-semibold mb-5 leading-tight tracking-tight">
           Shaping how a government
           <br />
-          <span className="gradient-text">AI assistant</span> should talk about tax
+          <span className="gradient-text">AI assistant</span> should talk about money
         </h2>
         <p className="text-muted text-lg max-w-xl leading-relaxed">
           How can a generative AI assistant help people understand complicated
